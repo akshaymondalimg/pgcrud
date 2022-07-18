@@ -16,7 +16,17 @@ exports.SUCCESS = {
         statuscode: this.STATUS_CODE.OK,
         success: true,
         message: "User login successfully!"
-    }
+    },
+    ALL_USER_DATA: {
+        statuscode: this.STATUS_CODE.OK,
+        success: true,
+        message: "All user data!"
+    },
+    UPDATE_USER: {
+        statuscode: this.STATUS_CODE.OK,
+        success: true,
+        message: "User update successfully!"
+    },
 };
 
 exports.ERROR = {
@@ -48,5 +58,15 @@ exports.ERROR = {
         statuscode: this.STATUS_CODE.BADREQUEST,
         success: false,
         message: "Invalid credentials!"
+    },
+    USER_DATA_NOT_FOUND: {
+        statuscode: this.STATUS_CODE.NOTFOUND,
+        success: false,
+        message: "User data not found!"
+    },
+    INSERT_ID: {
+        statuscode: this.STATUS_CODE.BADREQUEST,
+        success: false,
+        message: "Please provide an id!"
     }
 };
