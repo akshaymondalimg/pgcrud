@@ -44,10 +44,13 @@ exports.registerUser = async (req) => {
 exports.loginUser = async (req) => {
     try {
         let findUserByEmail = await pool.query(`SELECT * FROM users WHERE email ='${req.body.email}'`);
-        if (findUserByEmail.rows.length === 0) return Constant.ERROR.EMAIL_NOT_FOUND;
+        if (findUserByEmail.rows.length === 0) return Constant.ERROR.INVALID_CREDENTIALS;
         if (req.body.password && await bcrypt.compare(req.body.password, findUserByEmail.rows[0].password)) {
             const token = await CreateToken.createToken({
-                findUserByEmail: findUserByEmail.rows[0]
+                firstName: findUserByEmail.rows[0].first_name,
+                lastName: findUserByEmail.rows[0].last_name,
+                email: findUserByEmail.rows[0].email,
+                mobile: findUserByEmail.rows[0].mobile
             });
             delete findUserByEmail.rows[0].password;
             delete findUserByEmail.rows[0].timestamp;
